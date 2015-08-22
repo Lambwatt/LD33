@@ -5,6 +5,7 @@ public class MoveShark : MonoBehaviour {
 
 	public int rotConstant;
 	public float swimForce;
+	public float gravity;
 	private Rigidbody2D body;
 
 	// Use this for initialization
@@ -16,6 +17,11 @@ public class MoveShark : MonoBehaviour {
 	void Update () {
 
 		//Debug.Log ("updated");
+		if(transform.position.y>4.5){
+			body.gravityScale = gravity;
+		}else{
+			body.gravityScale = 0;
+		}
 
 		if(Input.GetKey(KeyCode.A)){
 			transform.RotateAround(transform.position, Vector3.forward, rotConstant*Time.deltaTime);
@@ -28,7 +34,7 @@ public class MoveShark : MonoBehaviour {
 		}
 
 		if(Input.GetKeyDown(KeyCode.Space)){
-			body.AddRelativeForce(new Vector2(500.0f, 0.0f));
+			body.AddRelativeForce(new Vector2(swimForce, 0.0f));
 		}
 
 	}
