@@ -16,6 +16,9 @@ public class MoveShark : MonoBehaviour {
 
 	public delegate void EatAction(float energy);
 	public static event EatAction onEat;
+
+	public delegate void HitAction(float energy);
+	public static event HitAction onGetHit;
 	
 	// Use this for initialization
 	void Start () {
@@ -61,9 +64,17 @@ public class MoveShark : MonoBehaviour {
 		if(other.gameObject.CompareTag("food")){
 			onEat(other.gameObject.GetComponent<Values>().energy);
 		}
-		if(other.gameObject.CompareTag("danger"))
-			Debug.Log ("ouch!");
+//		if(other.gameObject.CompareTag("danger"))
+//			Debug.Log ("ouch!");
 
+		Destroy(other.gameObject);
+	}
+
+	public void OnCollisionEnter2D(Collision2D other){
+
+		if(other.gameObject.CompareTag("danger"))
+			onGetHit(other.gameObject.GetComponent<Values>().energy);
+		
 		Destroy(other.gameObject);
 	}
 

@@ -24,8 +24,9 @@ public class ManageStats : MonoBehaviour {
 		
 		maxWidth = energyBar.transform.localScale.x;
 
-		MoveShark.onSwim+=deductEnergy;
+		MoveShark.onSwim+=spendEnergy;
 		MoveShark.onEat+=addEnergy;
+		MoveShark.onGetHit+=deductEnergy;
 
 		ManageGame.onStartGame+=resetStats;
 
@@ -36,7 +37,7 @@ public class ManageStats : MonoBehaviour {
 	
 	}
 
-	private void deductEnergy(){
+	private void spendEnergy(){
 		currentEnergy-=lossToSwim;
 
 		if(currentEnergy<=0.0f){
@@ -46,6 +47,18 @@ public class ManageStats : MonoBehaviour {
 
 		energyBar.transform.localScale = new Vector3(maxWidth*(currentEnergy/totalEnergy), energyBar.transform.localScale.y);
 
+	}
+
+	private void deductEnergy(float energy){
+		currentEnergy-=energy;
+		
+		if(currentEnergy<=0.0f){
+			currentEnergy = 0.0f;
+			ManageGame.endGame();
+		}
+		
+		energyBar.transform.localScale = new Vector3(maxWidth*(currentEnergy/totalEnergy), energyBar.transform.localScale.y);
+		
 	}
 
 	private void addEnergy(float energy){
