@@ -7,10 +7,12 @@ public class MoveShark : MonoBehaviour {
 	public float swimForce;
 	public float gravity;
 	private Rigidbody2D body;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
 		body = GetComponent<Rigidbody2D>();
+		animator = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -35,6 +37,7 @@ public class MoveShark : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.Space)){
 			body.AddRelativeForce(new Vector2(swimForce, 0.0f));
+			animator.SetTrigger("swim");
 		}
 
 	}
