@@ -8,11 +8,15 @@ public class MoveShark : MonoBehaviour {
 	public float gravity;
 	private Rigidbody2D body;
 	private Animator animator;
+	private BoxCollider2D contact;
 
 	// Use this for initialization
 	void Start () {
 		body = GetComponent<Rigidbody2D>();
 		animator = GetComponentInChildren<Animator>();
+		contact = GetComponentInChildren<BoxCollider2D>();
+
+
 	}
 	
 	// Update is called once per frame
@@ -41,4 +45,12 @@ public class MoveShark : MonoBehaviour {
 		}
 
 	}
+
+	public void OnTriggerEnter2D(Collider2D other){
+		Debug.Log ("triggered");
+		Destroy(other.gameObject);
+	}
+
+
 }
+
