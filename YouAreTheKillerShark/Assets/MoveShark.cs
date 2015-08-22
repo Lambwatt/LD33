@@ -48,6 +48,10 @@ public class MoveShark : MonoBehaviour {
 
 	public void OnTriggerEnter2D(Collider2D other){
 		Debug.Log ("triggered");
+		if(other.gameObject.CompareTag("food"))
+			Debug.Log ("yum!");
+		if(other.gameObject.CompareTag("danger"))
+			Debug.Log ("ouch!");
 		Destroy(other.gameObject);
 	}
 
