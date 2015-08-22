@@ -14,6 +14,8 @@ public class moveConstant : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		ManageGame.onStartGame+=die;
+
 		yDiff = Mathf.Abs(maxY-minY);
 
 		int negative;
@@ -41,5 +43,14 @@ public class moveConstant : MonoBehaviour {
 		transform.position+=new Vector3(direction.x, direction.y);
 		if(Mathf.Abs(transform.position.x)>20.0f)
 			Destroy(gameObject);
+	}
+
+	public void die(){
+		//ManageGame.onStartGame-=die;
+		Destroy(gameObject);
+	}
+
+	public void OnDestroy(){
+		ManageGame.onStartGame-=die;
 	}
 }

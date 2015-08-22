@@ -46,8 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GameOverScript.cs" />
      <Compile Include="Assets\GenerateEnemies.cs" />
+     <Compile Include="Assets\MainMenu.cs" />
+     <Compile Include="Assets\ManageGame.cs" />
+     <Compile Include="Assets\ManageStats.cs" />
+     <Compile Include="Assets\ManageUI.cs" />
      <Compile Include="Assets\MoveShark.cs" />
+     <Compile Include="Assets\Values.cs" />
      <Compile Include="Assets\moveConstant.cs" />
      <Compile Include="Assets\movePulse.cs" />
  <Reference Include="UnityEngine.UI">

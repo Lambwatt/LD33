@@ -16,6 +16,8 @@ public class movePulse : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		ManageGame.onStartGame+=die;
+
 		body = GetComponent<Rigidbody2D>();
 
 		yDiff = Mathf.Abs(maxY-minY);
@@ -32,12 +34,12 @@ public class movePulse : MonoBehaviour {
 		float y = yDiff*Random.value + minY;
 		
 		transform.position = new Vector3(x, y);
-		Debug.Log (transform.position);
+//		Debug.Log (transform.position);
 		
 		if(transform.position.x>0){
 			direction = new Vector2(-1.0f*swimForce, 0.0f);
 			transform.RotateAround(transform.position, Vector3.forward, 180.0f);
-			Debug.Log ("now = "+transform.position);
+			//Debug.Log ("now = "+transform.position);
 		}
 		else{
 			direction = new Vector2(1.0f*swimForce, 0.0f);
@@ -58,12 +60,21 @@ public class movePulse : MonoBehaviour {
 		
 		//transform.position+=new Vector3(direction.x, direction.y);
 
-		Debug.Log ("position = "+Mathf.Abs(transform.position.x));
+		//Debug.Log ("position = "+Mathf.Abs(transform.position.x));
 		if(Mathf.Abs(transform.position.x)>20.0f)
-			Destroy(gameObject);
+			die();
 	}
 
 	public void resetTimer(){
 		pulseTime = timeDiff*Random.value + minPause;
+	}
+
+	public void die(){
+		//ManageGame.onStartGame-=die;
+		Destroy(gameObject);
+	}
+
+	public void OnDestroy(){
+		ManageGame.onStartGame-=die;
 	}
 }

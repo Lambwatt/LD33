@@ -10,17 +10,26 @@ public class MoveShark : MonoBehaviour {
 	private Animator animator;
 	private BoxCollider2D contact;
 
+	//events
+	public delegate void SwimAction();
+	public static event SwimAction onSwim;
+
+	public delegate void EatAction(float energy);
+	public static event EatAction onEat;
+	
 	// Use this for initialization
 	void Start () {
 		body = GetComponent<Rigidbody2D>();
 		animator = GetComponentInChildren<Animator>();
 		contact = GetComponentInChildren<BoxCollider2D>();
 
-
+		
+		ManageGame.onEndGame+=die;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 
 		//Debug.Log ("updated");
 		if(transform.position.y>4.5){
@@ -42,19 +51,27 @@ public class MoveShark : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Space)){
 			body.AddRelativeForce(new Vector2(swimForce, 0.0f));
 			animator.SetTrigger("swim");
+			onSwim();
 		}
 
 	}
 
 	public void OnTriggerEnter2D(Collider2D other){
-		Debug.Log ("triggered");
-		if(other.gameObject.CompareTag("food"))
-			Debug.Log ("yum!");
+
+		if(other.gameObject.CompareTag("food")){
+			onEat(other.gameObject.GetComponent<Values>().energy);
+		}
 		if(other.gameObject.CompareTag("danger"))
 			Debug.Log ("ouch!");
+
 		Destroy(other.gameObject);
 	}
 
+	public void die(){
+		//Debug.Log ("dead?");
+		ManageGame.onEndGame-=die;
+		Destroy(gameObject);
+	}
 
 }
 
