@@ -7,16 +7,15 @@ public class moveConstant : MonoBehaviour {
 	public float swimForce;
 //	public float minFishPause;
 //	public float maxFishPause;
+	public float minY;
+	public float maxY;
 	private Vector2 direction;
-	//private Rigidbody2D body;
-//	private Timer timer;
-
+	private float yDiff;
 
 	// Use this for initialization
 	void Start () {
+		yDiff = Mathf.Abs(maxY-minY);
 
-		//Move all position selection to individual object.
-		//Debug.Log("generated?");
 		int negative;
 		if(Random.value<0.5f){
 			negative = -1;
@@ -25,7 +24,7 @@ public class moveConstant : MonoBehaviour {
 		}
 		
 		float x = 18.0f*(float)negative;
-		float y = 9.0f*Random.value - 4.5f;//move this to the start of the object script 
+		float y = yDiff*Random.value + minY;
 		
 		transform.position = new Vector3(x, y);
 
