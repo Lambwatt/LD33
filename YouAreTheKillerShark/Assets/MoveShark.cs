@@ -6,9 +6,12 @@ public class MoveShark : MonoBehaviour {
 	public int rotConstant;
 	public float swimForce;
 	public float gravity;
+
 	private Rigidbody2D body;
 	private Animator animator;
 	private BoxCollider2D contact;
+
+
 
 	//events
 	public delegate void SwimAction();
@@ -19,6 +22,9 @@ public class MoveShark : MonoBehaviour {
 
 	public delegate void HitAction(float energy);
 	public static event HitAction onGetHit;
+
+	public delegate void PostVelocityAction(float velocity);
+	public static event PostVelocityAction onPostVelocity;
 	
 	// Use this for initialization
 	void Start () {
@@ -57,6 +63,12 @@ public class MoveShark : MonoBehaviour {
 			onSwim();
 		}
 
+		//Debug.Log ("velocity = "+body.velocity+", relative vector = "+body.GetRelativeVector(new Vector2(1.0f, 0.0f)));
+		float forwardVelocity = Vector2.Dot(body.velocity, body.GetRelativeVector(new Vector2(1.0f, 0.0f)));
+		//float forwardVelocity = forwardVector.x;
+
+		onPostVelocity(forwardVelocity);
+
 	}
 
 	public void OnTriggerEnter2D(Collider2D other){
@@ -72,10 +84,10 @@ public class MoveShark : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D other){
 
-		if(other.gameObject.CompareTag("danger"))
+		if(other.gameObject.CompareTag("danger")){
 			onGetHit(other.gameObject.GetComponent<Values>().energy);
-		
-		Destroy(other.gameObject);
+			Destroy(other.gameObject);
+		}
 	}
 
 	public void die(){

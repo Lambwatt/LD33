@@ -11,6 +11,7 @@ public class moveConstant : MonoBehaviour {
 	public float maxY;
 	private Vector2 direction;
 	private float yDiff;
+	private Rigidbody2D body;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +42,7 @@ public class moveConstant : MonoBehaviour {
 	void Update () {
 
 		transform.position+=new Vector3(direction.x, direction.y);
+
 		if(Mathf.Abs(transform.position.x)>20.0f)
 			Destroy(gameObject);
 	}

@@ -9,11 +9,13 @@ public class ManageStats : MonoBehaviour {
 
 	public float totalOxygen;
 	public float oxygenLossPerFrame;
+	public float minimumSpeed;
 
 	private float currentEnergy;
 	private GameObject energyBar;
 	private float maxWidth;
-	
+
+	//private float forwardSpeed;
 	private float currentOxygen;
 	private GameObject oxygenBar;
 
@@ -27,6 +29,7 @@ public class ManageStats : MonoBehaviour {
 		MoveShark.onSwim+=spendEnergy;
 		MoveShark.onEat+=addEnergy;
 		MoveShark.onGetHit+=deductEnergy;
+		MoveShark.onPostVelocity+=updateVelocity;
 
 		ManageGame.onStartGame+=resetStats;
 
@@ -74,8 +77,30 @@ public class ManageStats : MonoBehaviour {
 
 	}
 
+	private void updateVelocity(float v){
+		if(v>minimumSpeed){
+			currentOxygen+=oxygenLossPerFrame*2;
+			if(currentOxygen>totalOxygen){
+				//Debug.Log ("Energy = "+currentEnergy)
+				currentOxygen = totalOxygen;
+				//ManageGame.endGame();
+			}
+		}else{
+			currentOxygen-=oxygenLossPerFrame;
+			if(currentOxygen<=0.0f){
+				//Debug.Log ("Energy = "+currentEnergy)
+				currentOxygen = 0.0f;
+				ManageGame.endGame();
+			}
+		}
+		oxygenBar.transform.localScale = new Vector3(maxWidth*(currentOxygen/totalEnergy), oxygenBar.transform.localScale.y);
+	}
+
 	private void resetStats(){
 		currentEnergy = totalEnergy;
 		currentOxygen = totalOxygen;
+
+		energyBar.transform.localScale = new Vector3(maxWidth*(currentEnergy/totalEnergy), energyBar.transform.localScale.y);
+		oxygenBar.transform.localScale = new Vector3(maxWidth*(currentOxygen/totalEnergy), oxygenBar.transform.localScale.y);
 	}
 }
