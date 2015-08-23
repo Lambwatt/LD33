@@ -17,6 +17,8 @@ public class moveConstant : MonoBehaviour {
 	void Start () {
 		ManageGame.onStartGame+=die;
 
+		body = GetComponent<Rigidbody2D>();
+
 		yDiff = Mathf.Abs(maxY-minY);
 
 		int negative;
@@ -26,24 +28,24 @@ public class moveConstant : MonoBehaviour {
 			negative = 1;
 		}
 		
-		float x = 18.0f*(float)negative;
+		float x = 17.5f*(float)negative;
 		float y = yDiff*Random.value + minY;
 		
 		transform.position = new Vector3(x, y);
 
 		if(transform.position.x>0)
-			direction = new Vector2(-1.0f*swimForce, 0.0f);
+			body.velocity = new Vector2(-1.0f*swimForce, 0.0f);
 		else
-			direction = new Vector2(1.0f*swimForce, 0.0f);
+			body.velocity = new Vector2(1.0f*swimForce, 0.0f);
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		transform.position+=new Vector3(direction.x, direction.y);
-
-		if(Mathf.Abs(transform.position.x)>20.0f)
+		//transform.position+=new Vector3(direction.x, direction.y);
+		//body.velocity = 
+		if(Mathf.Abs(transform.position.x)>17.6f)
 			Destroy(gameObject);
 	}
 

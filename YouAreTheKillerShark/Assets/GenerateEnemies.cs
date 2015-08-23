@@ -38,7 +38,7 @@ public class GenerateEnemies : MonoBehaviour {
 	public void generate(){
 		//Debug.Log (spawnables.Length);
 		int index = (int)Mathf.Floor (Random.value*(float)spawnables.Length);
-		Instantiate(Resources.Load(spawnables[index]), new Vector3(-18.0f, -18.0f), Quaternion.identity);
+		Instantiate(Resources.Load(spawnables[index]), new Vector3(-16.5f, -16.5f), Quaternion.identity);
 	}
 
 	public void turnOn(){
