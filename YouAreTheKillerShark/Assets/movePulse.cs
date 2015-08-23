@@ -8,6 +8,8 @@ public class movePulse : MonoBehaviour {
 	public float maxPause;
 	public float minY;
 	public float maxY;
+	public float distFromCentre;
+	public float deathPoint;
 	private Vector2 direction;
 	private float yDiff;
 	private float pulseTime;
@@ -31,7 +33,7 @@ public class movePulse : MonoBehaviour {
 		}
 		//Debug.Log ("negative = "+negative);
 		
-		float x = 17.5f*(float)negative;
+		float x = distFromCentre*(float)negative;
 		float y = yDiff*Random.value + minY;
 		
 		transform.position = new Vector3(x, y);
@@ -63,7 +65,7 @@ public class movePulse : MonoBehaviour {
 		//transform.position+=new Vector3(direction.x, direction.y);
 
 		//Debug.Log ("position = "+Mathf.Abs(transform.position.x));
-		if(Mathf.Abs(transform.position.x)>17.6f)
+		if(Mathf.Abs(transform.position.x)>deathPoint)
 			die();
 	}
 

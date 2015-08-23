@@ -4,7 +4,14 @@ using System.Timers;
 
 public class GenerateEnemies : MonoBehaviour {
 	
-	private string[] spawnables = new string[1]{"diver"/*"fish","hazard","pulseFish","pulseHazard","bounceFish"*/};
+	private string[] spawnables = new string[20]{"pulseBoat", "constantBoat",
+												"pulseDiver","constantDiver","bounceDiver",
+												"fish1","fish2","fish2",
+												"constantMegalodon","pulseMegalodon",
+												"pulseFish1","pulseFish2","pulseFish3",
+												"bounceSquid",
+												"bounceFish2","bounceFish3","bounceFish1",
+												"mysteryFish2","mysteryFish3","mysteryFish1"};
 	private float spawnTime;
 	private bool on;
 
@@ -38,7 +45,7 @@ public class GenerateEnemies : MonoBehaviour {
 	public void generate(){
 		//Debug.Log (spawnables.Length);
 		int index = (int)Mathf.Floor (Random.value*(float)spawnables.Length);
-		Instantiate(Resources.Load(spawnables[index]), new Vector3(-16.5f, -16.5f), Quaternion.identity);
+		Instantiate(Resources.Load(spawnables[index]), new Vector3(0.0f, -50.5f), Quaternion.identity);
 	}
 
 	public void turnOn(){

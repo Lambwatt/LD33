@@ -9,6 +9,8 @@ public class moveConstant : MonoBehaviour {
 //	public float maxFishPause;
 	public float minY;
 	public float maxY;
+	public float distFromCentre;
+	public float deathPoint;
 	private Vector2 direction;
 	private float yDiff;
 	private Rigidbody2D body;
@@ -29,14 +31,15 @@ public class moveConstant : MonoBehaviour {
 			negative = 1;
 		}
 		
-		float x = 17.5f*(float)negative;
+		float x = distFromCentre*(float)negative;
 		float y = yDiff*Random.value + minY;
 		
 		transform.position = new Vector3(x, y);
 
-		if(transform.position.x>0)
+		if(transform.position.x>0){
 			body.velocity = new Vector2(-1.0f*swimForce, 0.0f);
-		else
+			transform.RotateAround(transform.position, Vector3.down, 180.0f);
+		}else
 			body.velocity = new Vector2(1.0f*swimForce, 0.0f);
 
 	}
@@ -48,7 +51,7 @@ public class moveConstant : MonoBehaviour {
 
 		//transform.position+=new Vector3(direction.x, direction.y);
 		//body.velocity = 
-		if(Mathf.Abs(transform.position.x)>17.6f)
+		if(Mathf.Abs(transform.position.x)>deathPoint)
 			Destroy(gameObject);
 	}
 

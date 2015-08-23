@@ -10,6 +10,8 @@ public class moveBounce : MonoBehaviour {
 	public float maxY;
 	public float highGravity;
 	public float lowGravity;
+	public float distFromCentre;
+	public float deathPoint;
 	private Vector2 direction;
 	private float yDiff;
 	private float pulseTime;
@@ -33,7 +35,7 @@ public class moveBounce : MonoBehaviour {
 			negative = 1;
 		}
 		
-		float x = 17.5f*(float)negative;
+		float x = distFromCentre*(float)negative;
 		float y = yDiff*Random.value + minY;
 		
 		transform.position = new Vector3(x, y);
@@ -41,7 +43,7 @@ public class moveBounce : MonoBehaviour {
 		
 		if(transform.position.x>0){
 			//direction = new Vector2(-1.0f*swimForce, 0.0f);
-			transform.RotateAround(transform.position, Vector3.forward, 180.0f);
+			transform.RotateAround(transform.position, Vector3.down, 180.0f);
 			//Debug.Log ("now = "+transform.position);
 		}
 		//else{
@@ -70,7 +72,7 @@ public class moveBounce : MonoBehaviour {
 		//transform.position+=new Vector3(direction.x, direction.y);
 		
 		//Debug.Log ("position = "+Mathf.Abs(transform.position.x));
-		if(Mathf.Abs(transform.position.x)>17.6f)
+		if(Mathf.Abs(transform.position.x)>deathPoint)
 			die();
 	}
 	

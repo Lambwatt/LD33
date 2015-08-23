@@ -54,7 +54,9 @@
      <Compile Include="Assets\ManageUI.cs" />
      <Compile Include="Assets\MoveShark.cs" />
      <Compile Include="Assets\NetScript.cs" />
+     <Compile Include="Assets\SetUpTiles.cs" />
      <Compile Include="Assets\Values.cs" />
+     <Compile Include="Assets\boat.cs" />
      <Compile Include="Assets\diver.cs" />
      <Compile Include="Assets\moveBounce.cs" />
      <Compile Include="Assets\moveConstant.cs" />
