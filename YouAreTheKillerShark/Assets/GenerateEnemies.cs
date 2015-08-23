@@ -4,7 +4,7 @@ using System.Timers;
 
 public class GenerateEnemies : MonoBehaviour {
 	
-	private string[] spawnables = new string[5]{"fish","hazard","pulseFish","pulseHazard","bounceFish"};
+	private string[] spawnables = new string[1]{"diver"/*"fish","hazard","pulseFish","pulseHazard","bounceFish"*/};
 	private float spawnTime;
 	private bool on;
 

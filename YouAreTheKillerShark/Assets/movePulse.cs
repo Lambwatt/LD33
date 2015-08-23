@@ -29,16 +29,18 @@ public class movePulse : MonoBehaviour {
 		}else{
 			negative = 1;
 		}
+		//Debug.Log ("negative = "+negative);
 		
 		float x = 17.5f*(float)negative;
 		float y = yDiff*Random.value + minY;
 		
 		transform.position = new Vector3(x, y);
-//		Debug.Log (transform.position);
+		//Debug.Log ("position = "+transform.position);
 		
 		if(transform.position.x>0){
 			direction = new Vector2(-1.0f*swimForce, 0.0f);
-			transform.RotateAround(transform.position, Vector3.forward, 180.0f);
+			transform.RotateAround(transform.position, Vector3.down, 180.0f);
+			//Debug.Log ("local scale is "+transform.localScale);
 			//Debug.Log ("now = "+transform.position);
 		}
 		else{
@@ -47,14 +49,14 @@ public class movePulse : MonoBehaviour {
 
 		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
 		pulseTime-=Time.deltaTime;
 
 		if(pulseTime<0.0f){
-			body.AddRelativeForce(new Vector2(swimForce, 0.0f));
+			body.AddRelativeForce(new Vector2(swimForce*(direction.x/Mathf.Abs(direction.x)), 0.0f));
 			resetTimer();
 		}
 		

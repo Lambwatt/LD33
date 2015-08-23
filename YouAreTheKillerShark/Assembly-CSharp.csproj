@@ -55,8 +55,11 @@
      <Compile Include="Assets\MoveShark.cs" />
      <Compile Include="Assets\NetScript.cs" />
      <Compile Include="Assets\Values.cs" />
+     <Compile Include="Assets\diver.cs" />
      <Compile Include="Assets\moveBounce.cs" />
      <Compile Include="Assets\moveConstant.cs" />
+     <Compile Include="Assets\moveConstantFromStart.cs" />
+     <Compile Include="Assets\moveFaller.cs" />
      <Compile Include="Assets\movePulse.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

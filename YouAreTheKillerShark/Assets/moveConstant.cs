@@ -15,6 +15,7 @@ public class moveConstant : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		ManageGame.onStartGame+=die;
 
 		body = GetComponent<Rigidbody2D>();
@@ -39,6 +40,8 @@ public class moveConstant : MonoBehaviour {
 			body.velocity = new Vector2(1.0f*swimForce, 0.0f);
 
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
