@@ -55,6 +55,7 @@
      <Compile Include="Assets\MoveShark.cs" />
      <Compile Include="Assets\NetScript.cs" />
      <Compile Include="Assets\Values.cs" />
+     <Compile Include="Assets\moveBounce.cs" />
      <Compile Include="Assets\moveConstant.cs" />
      <Compile Include="Assets\movePulse.cs" />
  <Reference Include="UnityEngine.UI">
