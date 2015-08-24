@@ -9,11 +9,15 @@ public class ManageStats : MonoBehaviour {
 
 	public float totalOxygen;
 	public float oxygenLossPerFrame;
+	public float oxygenGainPerFrame;
 	public float minimumSpeed;
+
+	public AudioClip getHurt;
 
 	private float currentEnergy;
 	private GameObject energyBar;
 	private float maxWidth;
+
 
 	//private float forwardSpeed;
 	private float currentOxygen;
@@ -53,6 +57,8 @@ public class ManageStats : MonoBehaviour {
 	}
 
 	private void deductEnergy(float energy){
+
+		GetComponent<AudioSource>().PlayOneShot(getHurt, 0.7F);
 		currentEnergy-=energy;
 		
 		if(currentEnergy<=0.0f){
@@ -79,7 +85,7 @@ public class ManageStats : MonoBehaviour {
 
 	private void updateVelocity(float v){
 		if(v>minimumSpeed){
-			currentOxygen+=oxygenLossPerFrame*2;
+			currentOxygen+=oxygenGainPerFrame;
 			if(currentOxygen>totalOxygen){
 				//Debug.Log ("Energy = "+currentEnergy)
 				currentOxygen = totalOxygen;

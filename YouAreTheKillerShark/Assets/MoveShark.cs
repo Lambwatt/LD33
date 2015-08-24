@@ -9,7 +9,7 @@ public class MoveShark : MonoBehaviour {
 
 	public AudioClip chomp;
 	public AudioClip swim;
-	public AudioClip getHurt;
+
 
 	private Rigidbody2D body;
 	private Animator animator;
@@ -79,13 +79,15 @@ public class MoveShark : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D other){
 
 		if(other.gameObject.CompareTag("food")){
-			onEat(other.gameObject.GetComponent<Values>().energy);
 			GetComponent<AudioSource>().PlayOneShot(chomp, 0.7F);
+			onEat(other.gameObject.GetComponent<Values>().energy);
+
 			Instantiate (Resources.Load("bloodEffect"), new Vector3(other.transform.position.x, other.transform.position.y), Quaternion.identity);
 		}
 		else if(other.gameObject.CompareTag("danger")){
+
 			onGetHit(other.gameObject.GetComponent<Values>().energy);
-			GetComponent<AudioSource>().PlayOneShot(getHurt, 0.7F);
+
 		}
 
 		Destroy(other.gameObject);
@@ -94,13 +96,15 @@ public class MoveShark : MonoBehaviour {
 	public void OnCollisionEnter2D(Collision2D other){
 
 		if(other.gameObject.CompareTag("danger")){
+			//GetComponent<AudioSource>().PlayOneShot(getHurt, 0.7F);
 			onGetHit(other.gameObject.GetComponent<Values>().energy);
-			GetComponent<AudioSource>().PlayOneShot(getHurt, 0.7F);
+
 			//Destroy(other.gameObject);
 		}
 		else if(other.gameObject.CompareTag("food")){
-			onEat(other.gameObject.GetComponent<Values>().energy);
 			GetComponent<AudioSource>().PlayOneShot(chomp, 0.7F);
+			onEat(other.gameObject.GetComponent<Values>().energy);
+
 			Instantiate (Resources.Load("bloodEffect"), new Vector3(other.transform.position.x, other.transform.position.y), Quaternion.identity);
 			Destroy(other.gameObject);
 		}
