@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FadeoutAndDie.cs" />
      <Compile Include="Assets\GameOverScript.cs" />
      <Compile Include="Assets\GenerateEnemies.cs" />
      <Compile Include="Assets\MainMenu.cs" />
